@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table( name = "utilisateur" )
@@ -19,12 +22,21 @@ public class Utilisateur {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private int       id;
     @Column( name = "login" )
+    @NotNull( message = "Veuillez saisir un login" )
+    @Size( min = 3, message = "Le login doit faire 3 caractères au moins" )
     private String    login;
     @Column( name = "email" )
+    @NotNull( message = "Veuillez saisir un email" )
+    @Pattern( regexp = "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)", message = "le format de l'adresse mail n'est pas valide" )
     private String    email;
     @Column( name = "mot_de_passe" )
+    @NotNull( message = "Veuillez saisir un mot de passe" )
+    @Size( min = 3, message = "Le mot de passe doit faire 3 caractères au moins" )
+    @Pattern( regexp = ".*(?=.{8,})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*", message = "Le mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule et 1 chiffre" )
     private String    mot_de_passe;
     @Column( name = "nom" )
+    @NotNull( message = "Veuillez saisir un nom" )
+    @Size( min = 3, message = "Le nom doit faire 3 caractères au moins" )
     private String    nom;
     @Column( name = "date_creation" )
     private Timestamp date_creation;

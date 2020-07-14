@@ -11,6 +11,12 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    
+    <context-param>
+         <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+         <param-value>true</param-value>
+    </context-param>
+    
  
     <!-- Mapping : association des requêtes dont le fichier porte l'extension .xhtml à la FacesServlet -->
     <servlet-mapping>

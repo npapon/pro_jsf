@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import dao.UtilisateurDao;
@@ -17,7 +17,7 @@ import dao.UtilisateurDao;
 // d'inscription
 // et n'a donc pas vocation à être stocké plus longtemps que le temps d'une
 // requête.
-@RequestScoped
+@ViewScoped
 public class InscrireBean implements Serializable {
     private static final long serialVersionUID = 1L;
 

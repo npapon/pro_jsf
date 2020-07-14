@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"> 
 
     <h:head>
         <meta charset="utf-8" />
@@ -13,43 +14,50 @@
             <legend>Inscription</legend>
             
                <h:outputLabel for="login">Login <span class="requis">*</span></h:outputLabel>
-            <h:inputText id="login" value="#{inscrireBean.utilisateur.login}" required="true" size="20" maxlength="60" requiredMessage ="#{msg['inscription.login']}"/>
-               <div class="erreur" id="erreurlogin"></div>                             
+            <h:inputText id="login" value="#{inscrireBean.utilisateur.login}"  size="20" maxlength="60">
+                <f:ajax event="blur" render="loginMessage" />
+               </h:inputText>
+                                       
                
                 <h:message id="loginMessage" for="login" errorClass="erreur" />
             <br />
             
             <h:outputLabel for="nom">Nom d'utilisateur <span class="requis">*</span></h:outputLabel>
-            <h:inputText id="nom" value="#{inscrireBean.utilisateur.nom}" required="true" size="20" maxlength="20" requiredMessage ="#{msg['inscription.nom']}"/>
-            <div class="erreur" id="erreurnom"></div>
+            <h:inputText id="nom" value="#{inscrireBean.utilisateur.nom}"  size="20" maxlength="20" requiredMessage ="#{msg['inscription.nom']}">
+                    <f:ajax event="blur" render="nomMessage" />
+                    </h:inputText>
              <h:message id="nomMessage" for="nom" errorClass="erreur" />
             <br />
             
             <h:outputLabel for="motdepasse">Mot de passe <span class="requis" >*</span></h:outputLabel>
-            <h:inputSecret id="motdepasse" value="#{inscrireBean.utilisateur.mot_de_passe}" required="true" size="20" maxlength="20" requiredMessage ="#{msg['inscription.motdepasse']}" />
-            <div class="erreur" id="erreurmotdepasse"></div>  
+            <h:inputSecret id="motdepasse" value="#{inscrireBean.utilisateur.mot_de_passe}" binding="#{composantMotDePasse}"  size="20" maxlength="20"  >
+                    <f:ajax event="blur" execute="motdepasse confirmation" render="motDePasseMessage confirmationMessage" />
+            </h:inputSecret>         
              <h:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" />
             <br />
     
             <h:outputLabel for="confirmation">Confirmation du mot de passe <span class="requis" >*</span></h:outputLabel>
-            <h:inputSecret id="confirmation" value="#{inscrireBean.utilisateur.mot_de_passe}" required="true" size="20" maxlength="20" requiredMessage ="#{msg['inscription.confirmation']}"/>
-            <div class="erreur" id="erreurconfirmation"></div> 
+            <h:inputSecret id="confirmation" value="#{inscrireBean.utilisateur.mot_de_passe}"   size="20" maxlength="20" >
+                    <f:ajax event="blur" execute="motdepasse confirmation" render="motDePasseMessage confirmationMessage"/>
+                      <f:attribute name="composantMotDePasse" value="#{composantMotDePasse}" />
+    <f:validator validatorId="confirmationMotDePasseValidator" />
+            </h:inputSecret>         
             <h:message id="confirmationMessage" for="confirmation" errorClass="erreur" />
             <br />
             
             <h:outputLabel for="email">Adresse email <span class="requis">*</span></h:outputLabel>
-            <h:inputText id="email" value="#{inscrireBean.utilisateur.email}" required="true" size="20" maxlength="60" requiredMessage ="#{msg['inscription.email']}" />
-            <div class="erreur" id="erreuremail"></div>  
+            <h:inputText id="email" value="#{inscrireBean.utilisateur.email}"  size="20" maxlength="60"  >
+                       <f:ajax event="blur" render="emailMessage" />
+                       <f:validator binding="#{existenceEmailValidator}" />
+            </h:inputText> 
             <h:message id="emailMessage" for="email" errorClass="erreur" />  
             <br />
-    
-       
-    
 
-            
             <h:messages globalOnly="true" infoClass="info" />
     
-            <h:commandButton value="Inscription" action="#{inscrireBean.inscrire}" styleClass="sansLabel" />
+            <h:commandButton value="Inscription" action="#{inscrireBean.inscrire}" styleClass="sansLabel" >
+             <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
             <h:commandButton value="reset" type="reset"/>
             <br />
           </fieldset>
