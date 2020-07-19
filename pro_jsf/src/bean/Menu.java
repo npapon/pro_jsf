@@ -9,6 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "menu" )
+
 public class Menu {
 
     @Column( name = "id" )

@@ -36,6 +36,10 @@ public class InscrireBean implements Serializable {
 
     public InscrireBean() {
         utilisateur = new Utilisateur();
+        utilisateur.setLogin( "a" );
+        utilisateur.setMot_de_passe( "b" );
+        utilisateur.setEmail( "c" );
+        utilisateur.setNom( "d" );
     }
 
     // Méthode d'action appelée lors du clic sur le bouton du formulaire

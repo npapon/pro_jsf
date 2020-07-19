@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:t="http://myfaces.apache.org/tomahawk">
+    <h:head>
+        <title>Tomahawk - Envoi de fichier</title>
+        <h:outputStylesheet library="default" name="css/style.css"  />
+    </h:head>
+    <h:body>
+        <h:form enctype="multipart/form-data">
+            <fieldset>
+                <legend>Envoi de fichier</legend>
+
+                <h:outputLabel for="description">Description du fichier</h:outputLabel>
+                <h:inputText id="description" value="#{uploadBean.fichier.description}"/>
+                <h:message id="descriptionMessage" for="description" errorClass="erreur" />
+                <br />
+
+                <h:outputLabel for="fichier">Emplacement du fichier <span class="requis">*</span></h:outputLabel>
+                <t:inputFileUpload id="fichier" value="#{uploadBean.fichier.contenu}" >
+                 <f:validator validatorId="tailleMaxFichierValidator" />
+                </t:inputFileUpload>
+                <h:message id="fichierMessage" for="fichier" errorClass="erreur" />
+                <br />
+                
+                <h:messages globalOnly="true" infoClass="info" />
+                
+                <h:commandButton value="Envoyer" action="#{uploadBean.envoyer}" styleClass="sansLabel"/>
+                <br />
+            </fieldset>
+        </h:form>
+    </h:body> 
+</html>
