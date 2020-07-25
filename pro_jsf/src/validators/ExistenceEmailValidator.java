@@ -66,6 +66,16 @@ public class ExistenceEmailValidator implements Validator {
              * globalOnly="true" : <h:messages globalOnly="true" />
              * 
              */
+
+            /*
+             * Le premier argument permet de définir le composant associé au
+             * message * Toutefois, il est possible de n'afficher que les
+             * messages qui ne sont attachés à aucun composant défini,
+             * c'est-à-dire les messages dont l'id est null, en utilisant
+             * l'attribut optionnel globalOnly="true" : <h:messages
+             * globalOnly="true" />
+             */
+
             facesContext.addMessage( component.getClientId( facesContext ), message );
         }
 
