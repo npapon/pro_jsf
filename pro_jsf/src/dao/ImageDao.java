@@ -22,7 +22,6 @@ public class ImageDao {
     public Image rechercherImage( String email ) throws DAOException {
         Image imageProfil = null;
 
-        System.out.println( "rechercherImage em imageDao " + em );
         Query requete = em.createQuery( JPQL_SELECT_PAR_EMAIL );
         requete.setParameter( PARAM_EMAIL, email );
         try {

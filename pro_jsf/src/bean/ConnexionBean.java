@@ -5,10 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import cookie.CookieGenerateur;
 import dao.ImageDao;
@@ -54,7 +51,11 @@ public class ConnexionBean implements Serializable {
     public void recupererEmplacementImageProfil() {
 
         String email = utilisateurDao.rechercherSession( utilisateur.getLogin(), utilisateur.getMot_de_passe() ).getEmail();
-        emplacementImageProfil = imageDao.rechercherImage( email ).getEmplacement();
+        try {
+            emplacementImageProfil = imageDao.rechercherImage( email ).getEmplacement();
+        } catch ( NullPointerException e ) {
+            System.out.println( "Pas d'image de profil" );
+        }
 
     }
 
@@ -65,28 +66,12 @@ public class ConnexionBean implements Serializable {
     }
 
     public void setCookieLogin() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-
-        HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        cookieLogin = new Cookie( "cookieLogin", utilisateur.getLogin() );
-        cookieLogin.setPath( request.getContextPath() );
-        cookieLogin.setMaxAge( 1000 );
-        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
-        response.addCookie( cookieLogin );
+        CookieGenerateur generateurCookie = new CookieGenerateur();
+        cookieLogin = generateurCookie.setCookie( cookieLogin, "cookieLogin", utilisateur.getLogin(), 220000 );
 
     }
 
     public Cookie getCookieLogin() {
-
-        CookieGenerateur cookieGenerateur = new CookieGenerateur();
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-
-        HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        cookieLogin = new Cookie( "cookieLogin", utilisateur.getLogin() );
-        cookieLogin.setPath( request.getContextPath() );
-        cookieLogin.setMaxAge( 1000 );
-        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
-        response.addCookie( cookieLogin );
 
         return cookieLogin;
     }

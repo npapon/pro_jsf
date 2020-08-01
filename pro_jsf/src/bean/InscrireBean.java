@@ -9,6 +9,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+
+import constante.Cryptage;
 import dao.UtilisateurDao;
 
 @ManagedBean
@@ -49,6 +52,7 @@ public class InscrireBean implements Serializable {
 
     public void inscrire() {
         initialiserDateInscription();
+        crypterMotDePasse();
         utilisateurDao.creer( utilisateur );
         // FacesMessage : cet objet permet simplement de définir un message de
         // validation,
@@ -81,5 +85,13 @@ public class InscrireBean implements Serializable {
     private void initialiserDateInscription() {
         Timestamp date = new Timestamp( System.currentTimeMillis() );
         utilisateur.setDate_creation( date );
+    }
+
+    private void crypterMotDePasse() {
+        ConfigurablePasswordEncryptor configurablePasswordEncryptor = new ConfigurablePasswordEncryptor();
+        configurablePasswordEncryptor.setAlgorithm( Cryptage.ALGO_CHIFFREMENT_SHA_256 );
+        configurablePasswordEncryptor.setPlainDigest( false );
+        String motdepassecrypte = configurablePasswordEncryptor.encryptPassword( utilisateur.getMot_de_passe() );
+        utilisateur.setMot_de_passe( motdepassecrypte );
     }
 }

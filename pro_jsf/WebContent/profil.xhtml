@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="fr"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+> 
     <h:head>
         <title>profil</title>
-        <h:outputStylesheet library="default" name="css/style.css"  />
-  
-
-      
+       <h:outputStylesheet library="default" name="css/style.css" />
     </h:head>
     <h:body>
-    <ui:include src="/menu.xhtml" />
-    
-    Mon profil
-    
- <p>#{connexionBean.emplacementImageProfil}</p>
- <p>#{connexionBean.utilisateur.login}</p>
-  <p>3: #{connexionBean.cookieLogin.value}</p>
 
+    <ui:include src="/menu.xhtml" />
+  
+  <p:fieldset legend="Bienvenu(e) #{connexionBean.utilisateur.login}">
+  <h:graphicImage  class ="imageprofil" value="#{connexionBean.emplacementImageProfil}"  title="profil" alt="Votre photo"/>
+   </p:fieldset>      
+    
+      <h:form id ="formulaire">
+     
+<h:commandButton value="Effacer mon compte" type="image"  action= "#{profilBean.goToInscriptionPage}"  image="images/icones/supprimer.png" styleClass="clickAll" >
+
+               <f:param id="param1" name="param1Name" value="#{connexionBean.utilisateur.login}"/>
+                <f:param id="param2" name="param2Name" value="#{connexionBean.utilisateur.mot_de_passe}"/>
+<f:actionListener binding="#{profilBean.supprimerCompte()}" />
+<f:actionListener binding="#{profilBean.parametersAction()}" />
+</h:commandButton>
+
+<br/>
+<div>
+
+</div>
+</h:form>
     </h:body> 
 </html>
   

@@ -130,7 +130,13 @@ img[title="deconnexion"] {
 	float: right;
 }
 
-img[title="supprimer"] {
+.gay {color : red}
+
+.buttonsupprimer {
+    background: white url('button.gif') no-repeat top;
+}
+
+#supprimercompte {
     width: 30px;
     height: 30px;
     float: right;
@@ -139,6 +145,13 @@ img[title="supprimer"] {
 img.imageprofil {
 	height: 100px;
 	width: auto;
+}
+
+.clickAll{
+  display:block;
+   width: 30px;
+    height: 30px;
+    float: right;
 }
 
 /* tableau -------------------------------------------------------------------------- */

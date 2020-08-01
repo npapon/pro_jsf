@@ -4,16 +4,16 @@
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:p="http://primefaces.org/ui"
-
 > 
 
     <h:head>
         <meta charset="utf-8" />
         <title>Connexion</title>
-        <h:outputStylesheet library="default" name="css/style.css"  />
+        <h:outputStylesheet library="default" name="css/style.css"  /> 
      
     </h:head>
     <h:body>
+   
 <ui:include src="/menu.xhtml" />
 
       <h:form id ="formulaire">
@@ -24,12 +24,7 @@ xmlns:p="http://primefaces.org/ui"
             <p:inputText name="login" id="login" value="#{connexionBean.utilisateur.login}"   binding="#{composantLogin}"  size="20" maxlength="60">
             <p:watermark for="login" value="#{connexionBean.cookieLogin.value}" />  
                 <f:ajax event="blur" render="loginMessage" />
-                           
-        
- 
-               </p:inputText>
-                                       
-               
+               </p:inputText>                                        
                 <p:message id="loginMessage" for="login" errorClass="erreur" />
             <br />
            
@@ -41,20 +36,15 @@ xmlns:p="http://primefaces.org/ui"
             </p:password>         
              <p:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" />
             <br />
-    
-
-    
 
             <p:messages globalOnly="true" infoClass="info" />
     
             <p:commandButton value="Connexion"  action="#{connexionBean.goToPageProfil}" styleClass="sansLabel" >
             <f:actionListener binding="#{connexionBean.recupererEmplacementImageProfil()}" />
-            
+            <f:actionListener binding="#{connexionBean.setCookieLogin()}" />
              <f:ajax execute="@form" render="@form" />
              <!-- avoir plusieurs action dans le commandBoutton -->
-         
                <f:param id="param1" name="param1Name" value="test"/>
-
             </p:commandButton>
             <p:commandButton value="reset" type="reset"/>
             <br />
