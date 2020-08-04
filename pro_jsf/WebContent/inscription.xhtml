@@ -59,7 +59,8 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 
             <h:messages globalOnly="true" infoClass="info" />
     
-            <h:commandButton value="Inscription" action="#{inscrireBean.inscrire}" styleClass="sansLabel" >
+            <h:commandButton value="Inscription" action="#{inscrireBean.goToPageProfil}" styleClass="sansLabel" >
+                        <f:actionListener binding="#{inscrireBean.inscrire()}" />
              <f:ajax execute="@form" render="@form" />
             </h:commandButton>
             <h:commandButton value="reset" type="reset"/>

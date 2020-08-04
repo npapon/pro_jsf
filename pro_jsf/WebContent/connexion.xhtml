@@ -13,13 +13,13 @@ xmlns:p="http://primefaces.org/ui"
      
     </h:head>
     <h:body>
-   
+     
 <ui:include src="/menu.xhtml" />
 
       <h:form id ="formulaire">
          <fieldset>
             <legend>Connexion</legend>
-            
+           
                <p:outputLabel for="login">Login</p:outputLabel>
             <p:inputText name="login" id="login" value="#{connexionBean.utilisateur.login}"   binding="#{composantLogin}"  size="20" maxlength="60">
             <p:watermark for="login" value="#{connexionBean.cookieLogin.value}" />  
@@ -38,7 +38,7 @@ xmlns:p="http://primefaces.org/ui"
             <br />
 
             <p:messages globalOnly="true" infoClass="info" />
-    
+           
             <p:commandButton value="Connexion"  action="#{connexionBean.goToPageProfil}" styleClass="sansLabel" >
             <f:actionListener binding="#{connexionBean.recupererEmplacementImageProfil()}" />
             <f:actionListener binding="#{connexionBean.setCookieLogin()}" />

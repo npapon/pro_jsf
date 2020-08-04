@@ -104,10 +104,13 @@ public class ProfilBean implements Serializable {
 
         imageProfil.setEmail( email );
         imageProfil = imageDao.rechercherImage( email );
-
-        imageDao.supprimerImage( imageProfil.getEmail() );
-        supprimerImageDuRepertoire( Dossiers.REPERTOIRE_CONTEXTE_APPLICATION, Dossiers.REPERTOIRE_IMAGESPROFIL,
-                imageProfil.getEmail() );
+        try {
+            imageDao.supprimerImage( imageProfil.getEmail() );
+            supprimerImageDuRepertoire( Dossiers.REPERTOIRE_CONTEXTE_APPLICATION, Dossiers.REPERTOIRE_IMAGESPROFIL,
+                    imageProfil.getEmail() );
+        } catch ( NullPointerException e ) {
+            System.out.println( "pas d'image à supprimer" );
+        }
 
     }
 

@@ -94,4 +94,9 @@ public class InscrireBean implements Serializable {
         String motdepassecrypte = configurablePasswordEncryptor.encryptPassword( utilisateur.getMot_de_passe() );
         utilisateur.setMot_de_passe( motdepassecrypte );
     }
+
+    public String goToPageProfil() {
+        // ...
+        return "/profil.xhtml?faces-redirect=true";
+    }
 }
