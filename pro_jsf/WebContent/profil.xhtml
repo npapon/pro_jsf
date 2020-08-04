@@ -15,11 +15,11 @@ xmlns:p="http://primefaces.org/ui"
   
   <p:fieldset legend="Bienvenu(e) #{connexionBean.utilisateur.login}">
   <h:graphicImage  class ="imageprofil" value="#{connexionBean.emplacementImageProfil}"  title="profil" alt="Votre photo"/>
-   </p:fieldset>      
-    
+   <div>
+       
       <h:form id ="formulaire">
      
-<h:commandButton value="Effacer mon compte" type="image"  action= "#{profilBean.goToInscriptionPage}"  image="images/icones/supprimer.png" styleClass="clickAll" >
+<h:commandButton value="Effacer mon compte" type="image"  action= "#{profilBean.goToInscriptionPage}"  image="images/icones/supprimer.png" styleClass="effacerProfil" >
 
                <f:param id="param1" name="param1Name" value="#{connexionBean.utilisateur.login}"/>
                 <f:param id="param2" name="param2Name" value="#{connexionBean.utilisateur.mot_de_passe}"/>
@@ -27,11 +27,29 @@ xmlns:p="http://primefaces.org/ui"
 <f:actionListener binding="#{profilBean.parametersAction()}" />
 </h:commandButton>
 
-<br/>
-<div>
-
-</div>
 </h:form>
+   </div>
+   
+   
+   </p:fieldset>      
+
+
+<h:form  enctype="multipart/form-data">
+<fieldset>
+            <legend>Charger sa photo</legend>
+            
+             <p:outputLabel for="imageprofil">Charger image profil</p:outputLabel>
+             <p:fileUpload mode="simple"   id="imageprofil" name="imageprofil"/>
+              <p:commandButton value="Valider l'image"  action="#{profilBean.creerImageProfil}" styleClass="sansLabel" >        
+               <f:param id="param1" name="param1Name" value="#{connexionBean.utilisateur.login}"/>
+                <f:param id="param2" name="param2Name" value="#{connexionBean.utilisateur.mot_de_passe}"/>
+            </p:commandButton>
+   
+            </fieldset>
+</h:form>
+
+<br/>
+
     </h:body> 
 </html>
   
