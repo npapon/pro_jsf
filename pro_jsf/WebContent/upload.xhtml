@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<h:body>
+<h2>JSF Tomwakh File Upload</h2>
+<h:form id="uploadForm" enctype="multipart/form-data">
+<h:panelGrid columns="3">
+<h:outputLabel for="file" value="Select file" />
+<t:inputFileUpload id="file" required="true" value="#{myBean.uploadedFile}"/>
+<h:message for="file" style="color: red;" />
+<h:panelGroup />
+<h:commandButton value="Submit" action="#{myBean.submit}"/>
+<h:message for="uploadForm" infoStyle="color: green;" errorStyle="color: red;" />
+</h:panelGrid>
+</h:form>
+<br />
+<h:outputLink value="file/#{myBean.fileName}" rendered="#{myBean.fileName != null}">
+Download back
+</h:outputLink>
+</h:body>
+</html>
