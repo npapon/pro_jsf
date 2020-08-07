@@ -6,16 +6,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
-@ManagedBean
-@SessionScoped
 public class MyBean {
 
     private UploadedFile uploadedFile;
@@ -25,6 +21,7 @@ public class MyBean {
     public void submit() {
         // Just to demonstrate what information you can get from the uploaded
         // file.
+
         System.out.println( "File type: " + uploadedFile.getContentType() );
         System.out.println( "File name: " + uploadedFile.getName() );
         System.out.println( "File size: " + uploadedFile.getSize() + " bytes" );
@@ -40,6 +37,7 @@ public class MyBean {
 
         try {
             // Create file with unique name in upload folder and write to it.
+
             file = File.createTempFile( prefix + "_", "." + suffix, new File( "c:/upload" ) );
             output = new FileOutputStream( file );
             IOUtils.copy( uploadedFile.getInputStream(), output );
