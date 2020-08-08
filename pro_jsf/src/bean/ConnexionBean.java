@@ -53,6 +53,7 @@ public class ConnexionBean implements Serializable {
         String email = utilisateurDao.rechercherSession( utilisateur.getLogin(), utilisateur.getMot_de_passe() ).getEmail();
         try {
             emplacementImageProfil = imageDao.rechercherImage( email ).getEmplacement();
+            System.out.println( "emplacement image profil " + emplacementImageProfil );
         } catch ( NullPointerException e ) {
             System.out.println( "Pas d'image de profil" );
         }

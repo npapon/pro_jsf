@@ -4,6 +4,7 @@
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:p="http://primefaces.org/ui"
+   xmlns:t="http://myfaces.apache.org/tomahawk"
 > 
     <h:head>
         <title>profil</title>
@@ -17,21 +18,44 @@ xmlns:p="http://primefaces.org/ui"
   <h:graphicImage  class ="imageprofil" value="#{connexionBean.emplacementImageProfil}"  title="profil" alt="Votre photo"/>
    </p:fieldset>      
     
-      <h:form id ="formulaire">
+           <h:form enctype="multipart/form-data">
+            <fieldset>
+                <legend>Envoi de fichier</legend>
+
      
-<h:commandButton value="Effacer mon compte" type="image"  action= "#{profilBean.goToInscriptionPage}"  image="images/icones/supprimer.png" styleClass="clickAll" >
+
+                <h:outputLabel for="fichier">Emplacement du fichier <span class="requis">*</span></h:outputLabel>
+                <t:inputFileUpload id="fichier" value="#{profilBean.fichier.contenu}" />
+                <h:message id="fichierMessage" for="fichier" errorClass="erreur" />
+                <br />
+
+              
+                <h:messages globalOnly="true" infoClass="info" />
+
+                <h:commandButton id="submitChargerImage" name ="chargerImageProfil" value="Envoyer" action="#{profilBean.creerImageProfil}" styleClass="sansLabel">
+                  <f:param id="param1" name="param1Name" value="#{connexionBean.utilisateur.login}"/>
+                <f:param id="param2" name="param2Name" value="#{connexionBean.utilisateur.mot_de_passe}"/>
+                <f:actionListener binding="#{profilBean.parametersAction()}" />
+                
+                </h:commandButton>
+                <br />
+            </fieldset>
+        </h:form>
+        
+        <div>
+          <h:form id ="formulaire">
+     
+<h:commandButton id="submitEffacerCompte" value="Effacer mon compte" type="image"  action= "#{profilBean.goToInscriptionPage}"  image="images/icones/supprimer.png" styleClass="clickAll" >
 
                <f:param id="param1" name="param1Name" value="#{connexionBean.utilisateur.login}"/>
                 <f:param id="param2" name="param2Name" value="#{connexionBean.utilisateur.mot_de_passe}"/>
 <f:actionListener binding="#{profilBean.supprimerCompte()}" />
 <f:actionListener binding="#{profilBean.parametersAction()}" />
 </h:commandButton>
-
-<br/>
-<div>
-
-</div>
 </h:form>
+        
+        
+        </div>
 
 
     </h:body> 
