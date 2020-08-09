@@ -52,15 +52,42 @@ public class AchatDao {
 
         try {
             achat = (Achat) em.find( Achat.class, identifiantAchat );
+            System.out.println( "passe par là achat.setUtilisateur" );
+            achat.setUtilisateur( nomUtilisateur );
+            System.out.println( " et le nom utilisateur est " + achat.getUtilisateur() );
+            System.out.println( "passe par là achat.dateModification" );
+            achat.setDate_modification( dateModification );
+            System.out.println( " et la date de modif  est " + achat.getDate_modification() );
+            System.out.println( "passe par là achat.setVerrouilleV2" );
+            achat.setVerrouilleV2( null );
+            System.out.println( " et la verrou vaut " + achat.getVerrouilleV2() );
+
+            System.out.println( "achat modifié" + achat.toString() );
+            em.flush();
+
         } catch ( NoResultException e ) {
         } catch ( Exception e ) {
             throw new DAOException( e );
         }
-        achat.setUtilisateur( nomUtilisateur );
-        achat.setDate_modification( dateModification );
-        achat.setVerrouilleV2( null );
 
-        em.flush();
+    }
+
+    public void modifierAchatBloqueV3( int identifiantAchat, String nomUtilisateur, Timestamp dateModification )
+            throws DAOException {
+
+        Achat achat = null;
+
+        Query query = em
+                .createQuery(
+                        "UPDATE Achat a set a.verrouilleV2 = null, a.utilisateur = :login, a.date_modification = :dtemod where a.id = :ideach" );
+
+        query.setParameter( "login", nomUtilisateur );
+        query.setParameter( "ideach", identifiantAchat );
+
+        query.setParameter( "dtemod", dateModification );
+        int rowsUpdated = query.executeUpdate();
+        System.out.println( "entities Updated: " + rowsUpdated );
+
     }
 
 }

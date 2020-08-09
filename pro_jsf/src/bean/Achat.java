@@ -61,6 +61,7 @@ public class Achat {
     }
 
     public void setVerrouilleV2( String verrouilleV2 ) {
+
         this.verrouilleV2 = verrouilleV2;
     }
 
@@ -77,6 +78,7 @@ public class Achat {
     }
 
     public void setUtilisateur( String utilisateur ) {
+
         this.utilisateur = utilisateur;
     }
 
