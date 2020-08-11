@@ -19,7 +19,6 @@ import dao.AchatDao;
 public class LibererAchatsBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private List<Achat>       listAchats;
     private Utilisateur       utilisateur;
     private List<Achat>       achatsBloquesV2;
     private String            param1;
@@ -57,12 +56,17 @@ public class LibererAchatsBean implements Serializable {
 
     }
 
-    public List<Achat> getListAchats() {
-        return listAchats;
+    public List<Achat> getAchatsBloquesV2() {
+        return achatsBloquesV2;
     }
 
-    public void setListAchats( List<Achat> listAchats ) {
-        this.listAchats = listAchats;
+    public void setAchatsBloquesV2( List<Achat> achatsBloquesV2 ) {
+        this.achatsBloquesV2 = achatsBloquesV2;
+    }
+
+    public String goToPageLibererAchat() {
+        // ...
+        return "/libererachatsv2.xhtml?faces-redirect=true";
     }
 
 }

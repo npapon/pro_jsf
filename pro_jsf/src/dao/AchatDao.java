@@ -15,12 +15,13 @@ import bean.Achat;
 @Stateless
 public class AchatDao {
 
-    private static final String JPQL_SELECT_ACHAT_BLOQUE = "SELECT b FROM Achat b where b.verrouilleV2 in ('O','N')";
-    private static final String JPQL_SELECT_ACHAT        = "SELECT b FROM Achat b where b.id = :ideach";
+    private static final String JPQL_SELECT_ACHAT_BLOQUE  = "SELECT b FROM Achat b where b.verrouilleV2 in ('O','N')";
+    private static final String JPQL_SELECT_ACHAT         = "SELECT b FROM Achat b where b.id = :ideach";
+    private static final String JPQL_UPDATE_ACHAT_BLOQUES = "UPDATE Achat a set a.verrouilleV2 = null, a.utilisateur = :userid, a.date_modification = :dtemod where a.id = :ideach";
 
-    private static final String PARAM_IDEACH             = "ideach";
-    private static final String PARAM_USERID             = "userid";
-    private static final String PARAM_DTEMOD             = "dtemod";
+    private static final String PARAM_IDEACH              = "ideach";
+    private static final String PARAM_USERID              = "userid";
+    private static final String PARAM_DTEMOD              = "dtemod";
 
     @PersistenceContext( unitName = "bdd_PU" )
     private EntityManager       em;
@@ -79,12 +80,12 @@ public class AchatDao {
 
         Query query = em
                 .createQuery(
-                        "UPDATE Achat a set a.verrouilleV2 = null, a.utilisateur = :login, a.date_modification = :dtemod where a.id = :ideach" );
+                        JPQL_UPDATE_ACHAT_BLOQUES );
 
-        query.setParameter( "login", nomUtilisateur );
-        query.setParameter( "ideach", identifiantAchat );
+        query.setParameter( PARAM_USERID, nomUtilisateur );
+        query.setParameter( PARAM_IDEACH, identifiantAchat );
 
-        query.setParameter( "dtemod", dateModification );
+        query.setParameter( PARAM_DTEMOD, dateModification );
         int rowsUpdated = query.executeUpdate();
         System.out.println( "entities Updated: " + rowsUpdated );
 

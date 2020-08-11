@@ -5,7 +5,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:t="http://myfaces.apache.org/tomahawk">
     <h:head>
-        <title>Tomahawk - Envoi de fichier</title>
+        <title>Libérer achats</title>
         <h:outputStylesheet library="default" name="css/style.css"  />
     </h:head>
     <h:body>
@@ -17,11 +17,37 @@
                 
                 <h:messages globalOnly="true" infoClass="info" />
                 
-                <h:commandButton value="Libérer achat" action="#{libererAchatsBean.libererAchatV2}" styleClass="sansLabel">
+                <h:commandButton value="Libérer achat"  styleClass="sansLabel">
                   <f:param id="param1" name="param1Name" value="#{connexionBean.utilisateur.login}"/>
+                  <f:actionListener binding="#{libererAchatsBean.libererAchatV2()}" />
                 </h:commandButton>
                 <br />
             </fieldset>
         </h:form>
+       
+<h:dataTable value = "#{libererAchatsBean.achatsBloquesV2}" var = "achat"  rendered="#{not empty libererAchatsBean.achatsBloquesV2}">
+ <!--   styleClass = "employeeTable"
+   headerClass = "employeeTableHeader"
+   rowClasses = "employeeTableOddRow,employeeTableEvenRow">
+   --> 
+   
+
+   
+   <h:column>
+      <f:facet name = "header">IDENTIFIANT ACHAT</f:facet>
+      #{achat.id}
+
+   </h:column>
+   
+   <h:column>
+      <f:facet name = "header">NUMERO AFFAIRE</f:facet>
+      #{achat.numeroAffaire}
+   </h:column>
+   
+   <h:column>
+      <f:facet name = "header">NUMERO ACHAT</f:facet>
+      #{achat.numeroAchat}
+   </h:column>
+</h:dataTable>
     </h:body> 
 </html>
