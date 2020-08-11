@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 import cookie.CookieGenerateur;
 import dao.ImageDao;
@@ -21,6 +23,7 @@ public class ConnexionBean implements Serializable {
     private String            emplacementImageProfil;
 
     private Cookie            cookieLogin;
+    HttpSession               session;
 
     @EJB
     private UtilisateurDao    utilisateurDao;
@@ -30,9 +33,14 @@ public class ConnexionBean implements Serializable {
 
     public ConnexionBean() {
         utilisateur = new Utilisateur();
+        System.out.println( "session" + session );
     }
 
-    public void connexion() {
+    public void createSession() {
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        session = (HttpSession) facesContext.getExternalContext().getSession( true );
+        System.out.println( "session : " + session );
     }
 
     public Utilisateur getUtilisateur() {
@@ -75,6 +83,14 @@ public class ConnexionBean implements Serializable {
     public Cookie getCookieLogin() {
 
         return cookieLogin;
+    }
+
+    public HttpSession getSession() {
+        return session;
+    }
+
+    public void setSession( HttpSession session ) {
+        this.session = session;
     }
 
 }

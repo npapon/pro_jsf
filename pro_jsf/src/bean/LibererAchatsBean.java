@@ -43,16 +43,14 @@ public class LibererAchatsBean implements Serializable {
         String loginUser = utilisateur.getLogin();
 
         achatsBloquesV2 = achatDao.rechercherAchatsBloquesV2();
-        System.out.println( " achat bloqué " + achatsBloquesV2 );
         Timestamp dateModification = new Timestamp( System.currentTimeMillis() );
 
         for ( Achat achat : achatsBloquesV2 ) {
-            System.out.println( "ID :" + achat.getId() );
             achatDao.modifierAchatBloqueV3( achat.getId(), loginUser, dateModification );
         }
 
         FacesContext.getCurrentInstance().addMessage( null, new FacesMessage(
-                "libre" ) );
+                "Achats libérés" ) );
 
     }
 
@@ -62,11 +60,6 @@ public class LibererAchatsBean implements Serializable {
 
     public void setAchatsBloquesV2( List<Achat> achatsBloquesV2 ) {
         this.achatsBloquesV2 = achatsBloquesV2;
-    }
-
-    public String goToPageLibererAchat() {
-        // ...
-        return "/libererachatsv2.xhtml?faces-redirect=true";
     }
 
 }

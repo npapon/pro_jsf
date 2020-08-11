@@ -8,15 +8,13 @@
         <title>Libérer achats</title>
         <h:outputStylesheet library="default" name="css/style.css"  />
     </h:head>
+    <ui:include  src="/deconnexion.xhtml" />
+    <ui:include src="/menu.xhtml" />
     <h:body>
         <h:form >
             <fieldset>
-                <legend>Libérer les achats V2</legend>
-
-  
-                
-                <h:messages globalOnly="true" infoClass="info" />
-                
+                <legend>Libérer les achats V2</legend>           
+                <h:messages globalOnly="true" infoClass="info" />              
                 <h:commandButton value="Libérer achat"  styleClass="sansLabel">
                   <f:param id="param1" name="param1Name" value="#{connexionBean.utilisateur.login}"/>
                   <f:actionListener binding="#{libererAchatsBean.libererAchatV2()}" />
@@ -30,20 +28,14 @@
    headerClass = "employeeTableHeader"
    rowClasses = "employeeTableOddRow,employeeTableEvenRow">
    --> 
-   
-
-   
    <h:column>
       <f:facet name = "header">IDENTIFIANT ACHAT</f:facet>
       #{achat.id}
-
-   </h:column>
-   
+   </h:column> 
    <h:column>
       <f:facet name = "header">NUMERO AFFAIRE</f:facet>
       #{achat.numeroAffaire}
-   </h:column>
-   
+   </h:column> 
    <h:column>
       <f:facet name = "header">NUMERO ACHAT</f:facet>
       #{achat.numeroAchat}

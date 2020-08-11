@@ -42,6 +42,7 @@ xmlns:p="http://primefaces.org/ui"
             <p:commandButton value="Connexion"  action="#{connexionBean.goToPageProfil}" styleClass="sansLabel" >
             <f:actionListener binding="#{connexionBean.recupererEmplacementImageProfil()}" />
             <f:actionListener binding="#{connexionBean.setCookieLogin()}" />
+             <f:actionListener binding="#{connexionBean.createSession()}" />
              <f:ajax execute="@form" render="@form" />
              <!-- avoir plusieurs action dans le commandBoutton -->
                <f:param id="param1" name="param1Name" value="test"/>
