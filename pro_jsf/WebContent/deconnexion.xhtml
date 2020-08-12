@@ -15,7 +15,8 @@ xmlns:p="http://primefaces.org/ui"
  
           <h:form id ="deconnexionForm" rendered="#{not empty connexionBean.session}" >
      
-<h:commandButton id="submitDeconnexion" value="Se deconnecter" type="image"  action= "#{deconnexionBean.goToPageConnexion()}"  image="images/icones/deconnexion.png" styleClass="clickAll" >
+<h:commandButton id="submitDeconnexion" value="Se deconnecter" type="image"  action= "#{deconnexionBean.goToPageConnexion()}" 
+ image="images/icones/deconnexion.png" styleClass="clickAll" >
 
 
 <f:actionListener binding="#{deconnexionBean.deconnexion()}" />

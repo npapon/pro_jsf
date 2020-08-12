@@ -11,12 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import constante.Adressesinternes;
-import constante.AttributsServlet;
 
-@WebFilter( urlPatterns = { "/profil", "/effacermoncompte", "/libererachatv2", "/syntesescriptachatliberev2" } )
+@WebFilter( urlPatterns = { "/profil.xhtml", "/libererachatv2.xhtml" } )
 public class RestrictionFilter implements Filter {
 
     public void init( FilterConfig config ) throws ServletException {
@@ -27,10 +25,10 @@ public class RestrictionFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
+        System.out.println( "COCO" + request.getSession( false ) );
+        System.out.println( "coconecte" + request.getSession( false ).getAttribute( "connecte" ) );
 
-        HttpSession session = request.getSession();
-
-        if ( session.getAttribute( AttributsServlet.SESSIONACTIVE ) == null ) {
+        if ( request.getSession( false ).getAttribute( "connecte" ) == null ) {
             response.sendRedirect( Adressesinternes.CONNEXION_COURT );
         }
 

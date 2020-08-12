@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:t="http://myfaces.apache.org/tomahawk">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+   xmlns:t="http://myfaces.apache.org/tomahawk"
+> 
     <h:head>
         <title>Libérer achats</title>
         <h:outputStylesheet library="default" name="css/style.css"  />
     </h:head>
+
+    <h:body>
     <ui:include  src="/deconnexion.xhtml" />
     <ui:include src="/menu.xhtml" />
-    <h:body>
         <h:form >
             <fieldset>
                 <legend>Libérer les achats V2</legend>           

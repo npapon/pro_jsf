@@ -24,6 +24,7 @@ public class ConnexionBean implements Serializable {
 
     private Cookie            cookieLogin;
     HttpSession               session;
+    private boolean           connecte         = false;
 
     @EJB
     private UtilisateurDao    utilisateurDao;
@@ -39,8 +40,13 @@ public class ConnexionBean implements Serializable {
     public void createSession() {
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
+
         session = (HttpSession) facesContext.getExternalContext().getSession( true );
+        connecte = true;
+        session.setAttribute( "connecte", connecte );
+        System.out.println( "connecté ? " + session.getAttribute( "connecte" ) );
         System.out.println( "session : " + session );
+
     }
 
     public Utilisateur getUtilisateur() {
@@ -91,6 +97,14 @@ public class ConnexionBean implements Serializable {
 
     public void setSession( HttpSession session ) {
         this.session = session;
+    }
+
+    public boolean isConnecte() {
+        return connecte;
+    }
+
+    public void setConnecte( boolean connecte ) {
+        this.connecte = connecte;
     }
 
 }

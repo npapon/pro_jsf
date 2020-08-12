@@ -8,7 +8,7 @@ public class Adressesinternes {
     public static final String PROFIL_COURT                               = "profil";
     public static final String PROFIL_DESCRIPTION                         = "Mon profil";
     public static final String CONNEXION                                  = "/WEB-INF/connexion.jsp";
-    public static final String CONNEXION_COURT                            = "connexion";
+    public static final String CONNEXION_COURT                            = "connexion.xhtml";
     public static final String CONNEXION_DESCRIPTION                      = "Se connecter";
     public static final String DECONNEXION                                = "/WEB-INF/deconnexion.jsp";
     public static final String DECONNEXION_COURT                          = "deconnexion";
